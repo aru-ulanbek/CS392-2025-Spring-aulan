@@ -24,17 +24,17 @@ public class Assign02_05 {
         Integer[] A1 = {1, 2, 3, 4, 5};
         System.out.println(solve_3sum(A1)); // Expected output: true
 
-        // Test 2: Should return false (no such pair exists)
+        // Test 2: Should return true
         Integer[] A2 = {10, 20, 30, 40, 50};
-        System.out.println(solve_3sum(A2)); // Expected output: false
+        System.out.println(solve_3sum(A2)); // Expected output: true
 
         // Test 3: Should return true (3 + 2 = 5)
         Integer[] A3 = {5, 10, 15, 2, 3};
         System.out.println(solve_3sum(A3)); // Expected output: true
 
-        // Test 4: Should return false (no pair of numbers sum to any element)
+        // Test 4: Should return true
         Integer[] A4 = {-1, -2, -3, -4, -5};
-        System.out.println(solve_3sum(A4)); // Expected output: false
+        System.out.println(solve_3sum(A4)); // Expected output: true
 
         // Test 5: Should return true (0 + 0 = 0)
         Integer[] A5 = {0, 0, 0, 0, 0};
