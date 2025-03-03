@@ -22,22 +22,26 @@ public class Assign02_05 {
 	// Please write some code here for testing solve_3sum
 		// Test 1: Should return true (1 + 4 = 5)
         Integer[] A1 = {1, 2, 3, 4, 5};
-        System.out.println(solve_3sum(A1)); // Expected output: true
+        System.out.println(solve_3sum(A1)); 
 
-        // Test 2: Should return true
+        // Test 2: true
         Integer[] A2 = {10, 20, 30, 40, 50};
-        System.out.println(solve_3sum(A2)); // Expected output: true
+        System.out.println(solve_3sum(A2)); 
 
-        // Test 3: Should return true (3 + 2 = 5)
+        // Test 3: true
         Integer[] A3 = {5, 10, 15, 2, 3};
-        System.out.println(solve_3sum(A3)); // Expected output: true
+        System.out.println(solve_3sum(A3)); 
 
-        // Test 4: Should return true
+        // Test 4: true
         Integer[] A4 = {-1, -2, -3, -4, -5};
-        System.out.println(solve_3sum(A4)); // Expected output: true
+        System.out.println(solve_3sum(A4));
 
-        // Test 5: Should return true (0 + 0 = 0)
+        // Test 5: true 
         Integer[] A5 = {0, 0, 0, 0, 0};
-        System.out.println(solve_3sum(A5)); // Expected output: true
+        System.out.println(solve_3sum(A5));
+
+		// Test 6: false
+		Integer[] A6 = {13, 17, 31, 1, 2};
+		System.out.println(solve_3sum(A6)); 
     }
 }
