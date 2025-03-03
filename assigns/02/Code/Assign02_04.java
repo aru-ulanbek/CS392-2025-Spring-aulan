@@ -1,6 +1,4 @@
-import org.w3c.dom.Node;
-
-public class Assign02_04<T> implements Deque<T> {
+public class Assign02_04<T> implement Deque<T> {
     // Please give an list-based implementation of Deque
     // Note that the underlying list needs to be doubly-linked!
 
