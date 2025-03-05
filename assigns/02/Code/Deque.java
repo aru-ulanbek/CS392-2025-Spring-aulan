@@ -5,7 +5,7 @@ interface Deque<T> {
     boolean isFull(); // checks for fullness
     boolean isEmpty(); // checks for emptiness
 //
-    void takeout_at_beg(); // take out [x] at the front 
+    T takeout_at_beg(); // take out [x] at the front 
     void insert_at_beg(T x); // insert [x] at the front
 //
     T takeout_at_end(); // take out [x] at the rear end

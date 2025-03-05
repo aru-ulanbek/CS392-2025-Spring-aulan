@@ -2,7 +2,7 @@ public class Assign02_03<T> implements Deque<T> {
     // Please give an array-based implementation of Deque
     private int INITIAL_MAXIMUM_SIZE = 16;
     private int max_size;
-    private T[] input;
+    T[] input;
     private int end;
 
     public Assign02_03() {
@@ -52,8 +52,8 @@ public class Assign02_03<T> implements Deque<T> {
                 tempArr[i] = input[i + 1];
             }
 
-            input = tempArr;
             end -= 1;
+            input = tempArr;
         }
         return removed;
     }
@@ -69,6 +69,7 @@ public class Assign02_03<T> implements Deque<T> {
             for (int i = 0; i < end + 1; i++) {
                 tempArr[i] = input[i]; 
             }
+
 
             tempArr[end + 1] = x;
             input = tempArr;
