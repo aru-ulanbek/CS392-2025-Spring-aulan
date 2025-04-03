@@ -47,9 +47,9 @@ public class Assign04_04 {
 
 		Assign04_01.sort(indexedOriginal);
 		// Assign04_01.sort(A);
-		for (int i = 0; i < indexedOriginal.length; i++) {
-			System.out.print(indexedOriginal[i].toString() + ", ");
-		}
+		// for (int i = 0; i < indexedOriginal.length; i++) {
+		// 	System.out.print(indexedOriginal[i].toString() + ", ");
+		// }
 
 		for (int i = 0; i < A.length - 1; i++) {
 			if (indexedOriginal[i].compareTo(indexedOriginal[i+1]) > 0) {
@@ -58,11 +58,13 @@ public class Assign04_04 {
 				// compareTo only returns a number > 0 after the array is sorted if the sorted array is unstable
 				// so it will only swap the ith and (i+1)th element if it's unstable
 			}
+		}
+		for (int i = 0; i < A.length; i++) {
 			A[i] = indexedOriginal[i].value;
 		}
-		for (int i = 0; i < indexedOriginal.length; i++) {
-			System.out.print(indexedOriginal[i].toString() + ", ");
-		}
+		// for (int i = 0; i < indexedOriginal.length; i++) {
+		// 	System.out.print(indexedOriginal[i].toString() + ", ");
+		// }
 	}
 
     public static void main(String[] argv) {
