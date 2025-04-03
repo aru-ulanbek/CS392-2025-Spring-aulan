@@ -7,7 +7,7 @@ public class Assign04_01 {
 	private Assign04_01() {
 	}
 
-	private static <T> void exch(T A[], int i, int j) {
+	public static <T> void exch(T A[], int i, int j) {
 		T tmp;
 		tmp = A[i];
 		A[i] = A[j];

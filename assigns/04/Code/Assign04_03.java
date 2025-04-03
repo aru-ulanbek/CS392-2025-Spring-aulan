@@ -62,11 +62,11 @@ public class Assign04_03 {
         }
 
         LList<T> middle = split(head);
-        LList<T> nextOfMiddle = middle.next;
+        LList<T> head2 = middle.next;
         middle.next = null;
 
         LList<T> left = mergesort(head);
-        LList<T> right = mergesort(nextOfMiddle);
+        LList<T> right = mergesort(head2);
 
         LList<T> sortedList = merge(left, right);
         return sortedList;
@@ -137,7 +137,7 @@ public class Assign04_03 {
 
         System.out.println("Before sorting:");
         printList(list);
-        listSort(list);
+        list = listSort(list);
         System.out.println("After sorting:");
         printList(list);
 
@@ -155,7 +155,7 @@ public class Assign04_03 {
 
         System.out.println("Before sorting:");
         printList(list1);
-        listSort(list1);
+        list1 = listSort(list1);
         System.out.println("After sorting:");
         printList(list1);
     }
