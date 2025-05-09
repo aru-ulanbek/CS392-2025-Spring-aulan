@@ -30,10 +30,18 @@ public class Heap<T extends Comparable<T>> {
      * makeHeap - turn the elements in the contents array into a
      * representation of a max-at-top heap.
      */
-    private void makeHeap() {
+    private void makeHeap1() {
        // Please give a recursion-based implementation
        // You may need to introduce a private helper method
        // for this.
+        
+    }
+
+    private void makeHeapRec(int i) {
+        if (i<0) {
+            sink(i);
+            makeHeapRec(i - 1);
+        }
     }
     
     /** 
@@ -41,7 +49,14 @@ public class Heap<T extends Comparable<T>> {
      * up into its proper position. It returs true if inserted
      * and false if no more room for insertion
      */
-    public bool insert(T item) {
+    public boolean insert(T item) {
+        if (numItems > contents.length) {
+            return false;
+        }
+        contents[numItems] = item;
+        swim(numItems);
+        numItems += 1;
+        return true;
     }
     
     /**
@@ -49,6 +64,14 @@ public class Heap<T extends Comparable<T>> {
      * the remaining items so that we still have a heap.
      */
     public T remove() {
+        if (numItems == 0) {
+            
+        } else if (numItems != 0) {
+            T top = contents[0];
+            contents[0] = null;
+            swim(numItems);
+            return top;
+        }
     }
     
     /**
@@ -94,5 +117,8 @@ public class Heap<T extends Comparable<T>> {
     private void makeHeap() {
 	// Please give a loop-based implementation
 	// This is just heapfication: turning an array into a heap
+        for(int i = get_parent(numItems - 1); i >= 0; i--){ 
+            sink(i);
+        }
     }
 }
