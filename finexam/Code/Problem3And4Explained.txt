@@ -1,0 +1,12 @@
+Problem 3:
+DFS:
+    DFS can be used to solve the puzzle by placing the queens in a valid position for a completed board before going back to the previous position of the board to see if a queen can be placed elsewhere, if not going back to the previous one again until it reaches a position of the board where a queen can be placed elsewhere. Then it traverses the children of that tree before backtracking again.
+
+BFS:
+    BFS first puts a queen in every possible position for the first row and then checks the children of each possible board. It traverses row by row instead of column by column unlike DFS.
+
+Problem 4:
+DFS:
+    By treating each operation done between 2 numbers as a vertex, you can continue picking the leftover numbers and whichever operation to go down the vertices until the last vertex is reached. Check if the result is equal to 24, and if not, go to the previous vertex to traverse to a different vertex.
+BFS:
+    Go through each vertice by level. Traverse through every possible operation that can be done with the remaining numbers before moving on to the next level of operations and remaining numbers. The the amount of children each vertex has should decrease by 4 every level.

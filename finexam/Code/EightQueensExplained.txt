@@ -1,5 +1,0 @@
-DFS:
-    DFS can be used to solve the puzzle by placing the queens in a valid position for a completed board before going back to the previous position of the board to see if a queen can be placed elsewhere, if not going back to the previous one again until it reaches a position of the board where a queen can be placed elsewhere. Then it traverses the children of that tree before backtracking again.
-
-BFS:
-    BFS first puts a queen in every possible position for the first row and then checks the children of each possible board. It traverses row by row instead of column by column unlike DFS.
