@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 //
 // typedef LinStream =
 // Supplier<LinStrcon<T>>
@@ -35,26 +35,25 @@ class LinStream<T> {
 	    }
 	}
 	return new LinStream<T>(() -> new LinStrcon<T>());
-    }    
+    }
 
-	public LinStream<T> map(UnaryOperator<T> fopr) {
-		LinStrcon<T> cxs = value.get();
-		while (cxs.consq()) {
-			final T head = cxs.head;
-			final LinStream<T> tail = cxs.tail;
-			return new Linstream<T>(() -> new LinStrcon<T>(fopr.apply(head), tail.map(fopr)));
-		}
-		return new LinStream<T>(() -> new LinStrcon<T>());
+    public LinStream<T> map(UnaryOperator<T> fopr) {
+	LinStrcon<T> cxs = value.get();
+	while (cxs.consq()) {
+	    final T head = cxs.head;
+	    final LinStream<T> tail = cxs.tail;
+	    return new LinStream<T>(() -> new LinStrcon<T>(fopr.apply(head), tail.map(fopr)));
 	}
+	return new LinStream<T>(() -> new LinStrcon<T>());
+    }
 
-	public LinStream<T> concat(LinStream<T> fys) {
-		// check if first elem is finite
-		LinStrcon<T> cxs = value.get();
-		while (cxs.consq()) {
-			final T head = cxs.head;
-			final LinStream<T> tail = cxs.tail;
-			return new LinStream<T>(() -> new LinStrcon<T>(head, tail.append(fys)));
-		}
-		return fys;
+    public LinStream<T> append(LinStream<T> fys) {
+	LinStrcon<T> cxs = value.get();
+	while (cxs.consq()) {
+	    final T head = cxs.head;
+	    final LinStream<T> tail = cxs.tail;
+	    return new LinStream<T>(() -> new LinStrcon<T>(head, tail.append(fys)));
 	}
+	return fys;
+    }
 }
