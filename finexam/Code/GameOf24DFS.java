@@ -1,0 +1,127 @@
+package finexam.Code;
+
+public class GameOf24DFS {
+
+    public static class RationalState {
+        public double[] nums;
+        public String[] exprs;
+        public int size;
+    
+        public RationalState(double[] nums, String[] exprs, int size) {
+            this.nums = nums;
+            this.exprs = exprs;
+            this.size = size;
+        }
+    
+        @Override
+        public String toString() {
+            return exprs[0];
+        }
+    }
+        
+
+    public static boolean buildGraph(DFSforCS392.Vertex<RationalState> vertex) {
+        RationalState state = vertex.getData();
+        if (state.size == 1 && Math.abs(state.nums[0] - 24.0) == 0) {
+            System.out.println("Found solution: " + state);
+            return true;
+        }
+    
+        LinkedList<DFSforCS392.Vertex<RationalState>> neighbors = new LinkedList<>();
+    
+        for (int i = 0; i < state.size; i++) {
+            for (int j = 0; j < state.size; j++) {
+                if (i == j) continue;
+    
+                double a = state.nums[i];
+                double b = state.nums[j];
+                String ae = state.exprs[i];
+                String be = state.exprs[j];
+    
+                double[] rest = new double[state.size - 2];
+                String[] restExprs = new String[state.size - 2];
+                int idx = 0;
+                for (int k = 0; k < state.size; k++) {
+                    if (k != i && k != j) {
+                        rest[idx] = state.nums[k];
+                        restExprs[idx] = state.exprs[k];
+                        idx++;
+                    }
+                }
+    
+                double[] results = new double[6];
+                String[] exprs = new String[6];
+                int count = computeAllOps(a, ae, b, be, results, exprs);
+    
+                for (int r = 0; r < count; r++) {
+                    double[] newNums = new double[state.size - 1];
+                    String[] newExprs = new String[state.size - 1];
+                    for (int k = 0; k < rest.length; k++) {
+                        newNums[k] = rest[k];
+                        newExprs[k] = restExprs[k];
+                    }
+                    newNums[state.size - 2] = results[r];
+                    newExprs[state.size - 2] = exprs[r];
+    
+                    RationalState newState = new RationalState(newNums, newExprs, state.size - 1);
+                    DFSforCS392.Vertex<RationalState> newVertex = new DFSforCS392.Vertex<>(newState);
+                    neighbors.insert(newVertex);
+                    if (buildGraph(newVertex)) {
+                        vertex.setNeighbors(neighbors);
+                        return true;
+                    }
+                }
+            }
+        }
+    
+        vertex.setNeighbors(neighbors);
+        return false;
+    }    
+    
+    public static int computeAllOps(double a, String ae, double b, String be,
+                                double[] results, String[] exprs) {
+        int count = 0;
+
+        results[count] = a + b;
+        exprs[count] = "(" + ae + " + " + be + ")";
+        count++;
+
+        results[count] = a - b;
+        exprs[count] = "(" + ae + " - " + be + ")";
+        count++;
+
+        results[count] = b - a;
+        exprs[count] = "(" + be + " - " + ae + ")";
+        count++;
+
+        results[count] = a * b;
+        exprs[count] = "(" + ae + " * " + be + ")";
+        count++;
+
+        if (b != 0) {
+            results[count] = a / b;
+            exprs[count] = "(" + ae + " / " + be + ")";
+            count++;
+        }
+        if (a != 0) {
+            results[count] = b / a;
+            exprs[count] = "(" + be + " / " + ae + ")";
+            count++;
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        double[] initialNums = {5.0, 7.0, 7.0, 11.0};
+        String[] initialExprs = {"5", "7", "7", "11"};
+        RationalState startState = new RationalState(initialNums, initialExprs, 4);
+    
+        DFSforCS392.Vertex<RationalState> startVertex = new DFSforCS392.Vertex<>(startState);
+        buildGraph(startVertex);
+
+        DFSforCS392<RationalState> dfs = new DFSforCS392<>(startVertex);
+        dfs.traverse();
+    }
+}
+
